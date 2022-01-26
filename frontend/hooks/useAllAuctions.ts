@@ -1,4 +1,4 @@
-import { useContractCalls, useEthers, useTokenBalance } from '@usedapp/core'
+import { useContractCalls, useEthers } from '@usedapp/core'
 import { useSubgraphData } from '../hooks'
 import { BrandCentralAuctionInterface } from '../contracts/interfaces'
 import { BrandCentralAuction as CA } from '../contracts/address.json'

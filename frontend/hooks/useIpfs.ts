@@ -4,7 +4,6 @@ export default function useIpfs(url?: string) {
   if (!url) {return {ipfsData: ''}}
   const [loading, setLoading] = useState<boolean>(false);
   const [ipfsData, setIpfsData] = useState<string>('');
-  const [error, setError] = useState();
 
   useEffect(() => {
     getIpfsData();
@@ -17,7 +16,7 @@ export default function useIpfs(url?: string) {
       const { image } = await res.json();
       setIpfsData(image);
     } catch (e) {
-      setError(e);
+      console.log(e);
     }
     setLoading(false);
   }
@@ -25,6 +24,5 @@ export default function useIpfs(url?: string) {
   return {
     loading,
     ipfsData,
-    error,
   }
 }

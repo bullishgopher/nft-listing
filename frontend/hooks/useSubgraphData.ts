@@ -7,7 +7,6 @@ const GRAPH_URL = 'https://api.thegraph.com/subgraphs/name/vince0656/brand-centr
 export default function useSubgraphData() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
-  const [error, setError] = useState();
 
   const query = jsonToGraphQLQuery({ query: queries['getAllTickers'] });
 
@@ -30,7 +29,7 @@ export default function useSubgraphData() {
       const { data } = await res.json();
       setData(data);
     } catch (e) {
-      setError(e);
+      console.log(e);
     }
     setLoading(false);
   }
@@ -38,6 +37,5 @@ export default function useSubgraphData() {
   return {
     loading,
     data,
-    error,
   }
 }
