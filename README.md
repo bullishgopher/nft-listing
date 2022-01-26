@@ -5,6 +5,7 @@ Clone this [brand central page](https://brand.blockswap.network/) and present a 
 #### Ref to the data source:
 - [Contract](https://etherscan.io/address/0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd#code)
 - [Subgraph](https://thegraph.com/hosted-service/subgraph/vince0656/brand-central?version=current)
+- [Demo](https://brand.blockswap.network/)
 
 ### How to test on local
 ```
