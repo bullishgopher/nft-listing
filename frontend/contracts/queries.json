@@ -1,0 +1,10 @@
+{
+  "getAllTickers": {
+    "tickers": {
+      "__args": {
+        "first": 50
+      },
+      "id": true
+    }
+  }
+}
