@@ -20,8 +20,10 @@ export const Normal = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Normal.args = {
   name: 'Bag #1410',
-  description: 'Loot is randomized adventurer gear generated and stored on chain. Stats, images, and other functionality are intentionally omitted for others to interpret. Feel free to use Loot in any way you want.',
+  endBlock: '123456',
   image: lootImageSvg,
+  winner: '0xme',
+  shbClaimed: true,
   width: 500,
   height: 500,
 }
