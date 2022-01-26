@@ -1,4 +1,4 @@
-import useIpfs from 'hooks/useIpfs';
+import useIpfs from './../../hooks/useIpfs';
 import Image from 'next/image'
 
 interface Props {
