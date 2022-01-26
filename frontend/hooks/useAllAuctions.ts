@@ -6,7 +6,6 @@ import { BrandCentralAuction as CA } from '../contracts/address.json'
 export default function useAllAuctions() {
   const { account } = useEthers()
   const { data } = useSubgraphData()
-  console.log({data})
 
   const numberOfTickersBeingAuctioned = useContractCalls(
     [{
@@ -49,5 +48,6 @@ export default function useAllAuctions() {
     isConnected: !!account,
     numberOfTickersBeingAuctioned,
     auctions,
+    tickers: data ? (data as any).tickers : []
   }
 }

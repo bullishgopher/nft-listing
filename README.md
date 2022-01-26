@@ -11,3 +11,8 @@ Clone this [brand central page](https://brand.blockswap.network/) and present a 
 $ yarn
 $ yarn dev
 ```
+
+## TODO:
+
+- Get/List more data
+- Update styles/layout

@@ -6,11 +6,15 @@ interface Props {
    */
   name?: string
   /**
-   * Description of the NFT
+   * End block of the NFT
    */
-  description?: string
+  endBlock?: string
   /**
-   * Description of the NFT
+   * Address of the winner
+   */
+   winner?: string
+  /**
+   * Image of the NFT
    */
   image?: string
   /**
@@ -27,15 +31,22 @@ interface Props {
   height: number
 }
 
-function NFTBox({ className, description, image, name, width, height }: Props) {
+function NFTBox({ className, endBlock, image, name, winner, width, height }: Props) {
   return (
-    <div className={`flex items-center space-y-12 sm:space-x-12 mx-auto flex-col sm:flex-row ${className || ''}`}>
+    <div className={`flex items-center ${className || ''}`} style={{background: '#010101', borderRadius: '8px', padding: '8px', margin: '8px', width: '300px', height: '300px'}}>
       <div className="block shadow-md">
         {image && <Image src={image} alt={name} width={width} height={height} />}
       </div>
-      <div className={`flex flex-col space-y-6 p-2`} style={{maxWidth: width * 1.2}}>
+      <div className={`flex flex-col space-y-6 p-2`} style={{width: '100%', color: 'white'}}>
         <h1 className="text-xl text-indigo-700">{name}</h1>
-        <p className="text-gray-700">{description}</p>
+        <div className="flex items-center" style={{justifyContent: 'space-between'}}>
+          <div>End Block</div>
+          <div className="text-gray-700">{endBlock}</div>
+        </div>
+        <div className="flex items-center" style={{justifyContent: 'space-between'}}>
+          <div>Winner</div>
+          <div className="text-gray-700">{winner?.slice(0, 8)}</div>
+        </div>
       </div>
     </div>
   )

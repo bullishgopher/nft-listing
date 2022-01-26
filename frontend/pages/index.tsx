@@ -6,8 +6,7 @@ import NFTBox from '../components/NFTBox/NFTBox'
 import useAllAuctions from '../hooks/useAllAuctions'
 
 const Home: NextPage = () => {
-  const { isConnected, auctions } = useAllAuctions()
-  console.log('aaaaaaaaaa', auctions)
+  const { isConnected, auctions, tickers } = useAllAuctions()
 
   return (
     <div className="block">
@@ -27,14 +26,15 @@ const Home: NextPage = () => {
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col space-y-12">
+        <div className="flex" style={{flexWrap: 'wrap', justifyContent: 'space-between'}}>
           {auctions
             .filter((d) => !!d)
-            .map(({ bidder }: any, index) => (
+            .map(({ bidder, biddingEnd }: any, index) => (
               <NFTBox
                 key={index}
-                description={bidder}
-                name={bidder}
+                name={tickers[index].id}
+                endBlock={biddingEnd.toString()}
+                winner={bidder}
                 width={250}
                 height={250}
               />
