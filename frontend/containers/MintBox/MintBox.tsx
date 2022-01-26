@@ -27,7 +27,7 @@ function MintBox({ onMint, className }: Props) {
   return (
     <div className={`flex items-center space-x-4 ${className || ''}`}>
       <Input type="number" className="flex-1" value={tokenId} onChange={handleInputChange} placeholder="Token id" />
-      <Button primary onClick={handleMintClick}>Mint</Button>
+      <Button primary onClick={handleMintClick} disabled>Mint</Button>
     </div>
   )
 }

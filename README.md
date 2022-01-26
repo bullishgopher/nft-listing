@@ -16,3 +16,4 @@ $ yarn dev
 
 - Get/List more data
 - Update styles/layout
+- Use `numberOfTickersBeingAuctioned` to get exact amount of data from the graph

@@ -10,7 +10,6 @@ export default function useSubgraphData() {
   const [error, setError] = useState();
 
   const query = jsonToGraphQLQuery({ query: queries['getAllTickers'] });
-  console.log(query)
 
   useEffect(() => {
     getSubgraphData();

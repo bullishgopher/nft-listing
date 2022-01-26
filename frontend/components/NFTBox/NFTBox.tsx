@@ -1,3 +1,4 @@
+import useIpfs from 'hooks/useIpfs';
 import Image from 'next/image'
 
 interface Props {
@@ -8,11 +9,12 @@ interface Props {
   /**
    * End block of the NFT
    */
-  endBlock?: string
+  endBlock: string
   /**
    * Address of the winner
    */
-   winner?: string
+   winner: string
+   shbClaimed: boolean
   /**
    * Image of the NFT
    */
@@ -31,22 +33,31 @@ interface Props {
   height: number
 }
 
-function NFTBox({ className, endBlock, image, name, winner, width, height }: Props) {
+const ETHERSCAN_URL = 'https://etherscan.io/'
+
+function NFTBox({ className, endBlock, image, name, winner, shbClaimed, width, height }: Props) {
+  const { ipfsData } = useIpfs(image);
+  const textCenterEllipsis = (str: string, from: number, to: number) => {
+    return `${str.substr(0, from)}...${str.substr(str.length - to, str.length)}`;
+  };
+
   return (
-    <div className={`flex items-center ${className || ''}`} style={{background: '#010101', borderRadius: '8px', padding: '8px', margin: '8px', width: '300px', height: '300px'}}>
-      <div className="block shadow-md">
-        {image && <Image src={image} alt={name} width={width} height={height} />}
+    <div className={`flex items-center flex-col p-2 nft-box ${className || ''}`}>
+      <div className="block shadow-md mt-5">
+        {image && ipfsData && <Image src={ipfsData} alt={name} width={width} height={height} />}
       </div>
-      <div className={`flex flex-col space-y-6 p-2`} style={{width: '100%', color: 'white'}}>
-        <h1 className="text-xl text-indigo-700">{name}</h1>
-        <div className="flex items-center" style={{justifyContent: 'space-between'}}>
+      <div className={`flex flex-col space-y-6 p-2`} style={{width: '100%'}}>
+        {image && <h1 className="text-xl text-indigo-700">{name}</h1>}
+        {!image && <h1 className="text-center text-indigo-700 mb-10" style={{fontSize: '60px'}}>{name}</h1>}
+        <div className="flex items-center justify-between">
           <div>End Block</div>
-          <div className="text-gray-700">{endBlock}</div>
+          <div className="text-gray-700"><a href={`${ETHERSCAN_URL}block/${endBlock}`}>{endBlock}</a></div>
         </div>
-        <div className="flex items-center" style={{justifyContent: 'space-between'}}>
+        <div className="flex items-center justify-between">
           <div>Winner</div>
-          <div className="text-gray-700">{winner?.slice(0, 8)}</div>
+          <div className="text-gray-700"><a href={`${ETHERSCAN_URL}address/${winner}`}>{textCenterEllipsis(winner, 4, 4)}</a></div>
         </div>
+        {!shbClaimed && <button disabled>Bidding Closed</button>}
       </div>
     </div>
   )

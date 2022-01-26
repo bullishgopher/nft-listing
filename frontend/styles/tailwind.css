@@ -5,3 +5,11 @@
 .main-container {
   height: calc(100vh - 96px);
 }
+
+.nft-box {
+  background-color: blanchedalmond;
+  border-radius: 16px;
+  width: 32%;
+  height: 350px; 
+  margin-bottom: 16px;
+}

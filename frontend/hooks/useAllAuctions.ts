@@ -25,29 +25,37 @@ export default function useAllAuctions() {
     })) : [],
   )
 
+  const tokenIds = useContractCalls(
+    data && (data as any).tickers.length > 0 ? (data as any).tickers.map((d: any) => ({
+      abi: BrandCentralAuctionInterface,
+      address: CA,
+      method: 'lowerTickerToTokenId',
+      args: [d.id],
+    })) : [],
+  )
+
   // let tokenIdNumbers: number[] = []
 
-  // try {
-  //   tokenIdNumbers = tokenIds
-  //     .map((id) => (id ? Number(id.toString()) : -1))
-  //     .filter((id) => id > 0)
-  // } catch (e) {
-  //   console.log(e)
+  // if (data) {
+  //   tokenIdNumbers = (data as any).tickers
+  //     .map(({ticker}:any, id: number) => (Number(id.toString())))
+  //     .filter((id: number) => id >= 0)
   // }
 
-  // const tokenURIs = useContractCalls(
-  //   tokenIdNumbers.map((id) => ({
-  //     abi: BrandCentralAuctionInterface,
-  //     address: CA,
-  //     method: 'tokenURI',
-  //     args: [id],
-  //   }))
-  // )
+  const tokenURIs = useContractCalls(
+    tokenIds.map((id) => ({
+      abi: BrandCentralAuctionInterface,
+      address: CA,
+      method: 'tokenURI',
+      args: [id?.toString()],
+    }))
+  )
 
   return {
     isConnected: !!account,
     numberOfTickersBeingAuctioned,
     auctions,
-    tickers: data ? (data as any).tickers : []
+    tickers: data ? (data as any).tickers : [],
+    tokenURIs: tokenURIs || [],
   }
 }
